@@ -1,4 +1,35 @@
+import java.util.Scanner;
+
 public class TextUtils {
+
+    public static StringBuffer inputText(Scanner scanner) {
+        System.out.println("Enter the text:");
+        String input = scanner.nextLine();
+        if (input == null || input.trim().isEmpty()) {
+            throw new IllegalArgumentException("Text cannot be null or empty.");
+        }
+        return new StringBuffer(input);
+    }
+
+    public static String[] inputWords(Scanner scanner) {
+        System.out.println("Enter the number of words to search:");
+        int numWords = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline character
+        if (numWords <= 0) {
+            throw new IllegalArgumentException("Number of words must be positive.");
+        }
+        String[] words = new String[numWords];
+        for (int i = 0; i < numWords; i++) {
+            System.out.println("Enter word " + (i + 1) + ":");
+            String word = scanner.nextLine();
+            if (word == null || word.trim().isEmpty()) {
+                throw new IllegalArgumentException("Word cannot be null or empty.");
+            }
+            words[i] = word;
+        }
+        return words;
+    }
+
     public static int[] countWordOccurrencesInSentences(StringBuffer textBuffer, String[] words) {
         if (textBuffer == null || words == null) {
             throw new IllegalArgumentException("Text or words array cannot be null.");
